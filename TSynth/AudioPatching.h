@@ -79,18 +79,12 @@ AudioSynthWaveformDc     constant1Dc;    //xy=69,1781
 AudioSynthNoisePink      pink;           //xy=1462
 AudioSynthNoiseWhite     white;          //xy=1460
 AudioAnalyzePeak         peak;           //xy=2756,1817
-AudioMixer4              voiceMixer1L;    //xy=2233,581
-AudioMixer4              voiceMixer2L;    //xy=2240,1791
-AudioMixer4              voiceMixer3L;    //xy=2237,2976
-AudioMixer4              voiceMixerML;    //xy=2431,1798
-AudioMixer4              voiceMixer1R;    //xy=2233,581
-AudioMixer4              voiceMixer2R;    //xy=2240,1791
-AudioMixer4              voiceMixer3R;    //xy=2237,2976
-AudioMixer4              voiceMixerMR;    //xy=2431,1798
-AudioFilterStateVariable dcOffsetFilterL; //xy=2591,1804
-AudioFilterStateVariable dcOffsetFilterR; //xy=2591,1804
-AudioMixer4              volumeMixerL;    //xy=2774,1756
-AudioMixer4              volumeMixerR;    //xy=2774,1756
+AudioMixer4              voiceMixer1;    //xy=2233,581
+AudioMixer4              voiceMixer2;    //xy=2240,1791
+AudioMixer4              voiceMixer3;    //xy=2237,2976
+AudioMixer4              voiceMixerM;    //xy=2431,1798
+AudioFilterStateVariable dcOffsetFilter; //xy=2591,1804
+AudioMixer4              volumeMixer;    //xy=2774,1756
 Oscilloscope             scope;
 AudioMixer4              effectMixerR;   //xy=2984,1823
 AudioMixer4              effectMixerL;   //xy=2985,1728
@@ -773,8 +767,8 @@ AudioConnection          patchCord1034(voiceMixer2_12, 1, voiceMixerM_12, 2);
 AudioConnection          patchCord1035(voiceMixer3_12, 1, voiceMixerM_12, 3);
 */
 
-AudioConnection          patchCord2001(SharedAudio[0].voiceMixerM, 0, SharedAudio[0].ensemble, 0);
-AudioConnection          patchCord2002(SharedAudio[1].voiceMixerM, 0, SharedAudio[1].ensemble, 0);
+//AudioConnection          patchCord2001(SharedAudio[0].voiceMixerM, 0, SharedAudio[0].ensemble, 0);
+//AudioConnection          patchCord2002(SharedAudio[1].voiceMixerM, 0, SharedAudio[1].ensemble, 0);
 /*
 AudioConnection          patchCord2003(voiceMixerM_3, 0, ensemble3, 0);
 AudioConnection          patchCord2004(voiceMixerM_4, 0, ensemble4, 0);
@@ -788,11 +782,11 @@ AudioConnection          patchCord2011(voiceMixerM_11, 0, ensemble11, 0);
 AudioConnection          patchCord2012(voiceMixerM_12, 0, ensemble12, 0);
 */
 
-AudioConnection          patchCord111(SharedAudio[0].ensemble, 0, voiceMixer1L, 0);
-AudioConnection          patchCord3111(SharedAudio[0].ensemble, 0, voiceMixer1R, 0);
-AudioConnection          patchCord108(SharedAudio[1].ensemble, 0, voiceMixer1L, 1);
-AudioConnection          patchCord3108(SharedAudio[1].ensemble, 0, voiceMixer1R, 1);
 /*
+AudioConnection          patchCord111(SharedAudio[0].ensemble, 0, voiceMixer1L, 0);
+AudioConnection          patchCord3111(SharedAudio[0].ensemble, 1, voiceMixer1R, 0);
+AudioConnection          patchCord108(SharedAudio[1].ensemble, 0, voiceMixer1L, 1);
+AudioConnection          patchCord3108(SharedAudio[1].ensemble, 1, voiceMixer1R, 1);
 AudioConnection          patchCord109(ensemble3, 0, voiceMixer1L, 2);
 AudioConnection          patchCord3109(ensemble3, 0, voiceMixer1R, 2);
 AudioConnection          patchCord110(ensemble4, 0, voiceMixer1L, 3);
@@ -946,33 +940,58 @@ AudioConnection          patchCord449(white, 0, SharedAudio[9].noiseMixer, 1);
 AudioConnection          patchCord450(white, 0, SharedAudio[10].noiseMixer, 1);
 AudioConnection          patchCord451(white, 0, SharedAudio[11].noiseMixer, 1);
 
-AudioConnection          patchCord197(voiceMixer1L, 0, voiceMixerML, 0);
-AudioConnection          patchCord198(voiceMixer2L, 0, voiceMixerML, 1);
-AudioConnection          patchCord215(voiceMixer3L, 0, voiceMixerML, 2);
-AudioConnection          patchCord3197(voiceMixer1R, 0, voiceMixerMR, 0);
-AudioConnection          patchCord3198(voiceMixer2R, 0, voiceMixerMR, 1);
-AudioConnection          patchCord3215(voiceMixer3R, 0, voiceMixerMR, 2);
-//AudioConnection          patchCord203(voiceMixerM, 0, dcOffsetFilter, 0);
-//AudioConnection          patchCord203(voiceMixerM, 0, ensemble, 0);
+/*
+AudioConnection          patchCord197(voiceMixer1, 0, voiceMixerM, 0);
+AudioConnection          patchCord198(voiceMixer2, 0, voiceMixerM, 1);
+AudioConnection          patchCord215(voiceMixer3, 0, voiceMixerM, 2);
 
-AudioConnection          patchCord2203(voiceMixerML, 0, dcOffsetFilterL, 0);
-AudioConnection          patchCord2204(voiceMixerMR, 1, dcOffsetFilterR, 0);
+AudioConnection          patchCord203(voiceMixerM, 0, dcOffsetFilter, 0);
+//AudioConnection          patchCord203(voiceMixerM, 0, SharedAudio[0].ensemble, 0);
 
-AudioConnection          patchCord441(dcOffsetFilterL, 2, volumeMixerL, 0);
-AudioConnection          patchCord4441(dcOffsetFilterR, 2, volumeMixerR, 0);
-
-//AudioConnection          patchCord441(dcOffsetFilter, 2, volumeMixer, 0);
-//AudioConnection          patchCord112(volumeMixer, 0, ensemble, 0);
-AudioConnection          patchCord415(dcOffsetFilterL, 2, scope, 0);
-AudioConnection          patchCord416(dcOffsetFilterL, 2, peak, 0);
-//AudioConnection          patchCord113(ensemble, 0, effectMixerL, 1);
-//AudioConnection          patchCord114(ensemble, 1, effectMixerR, 1);
-AudioConnection          patchCord115(volumeMixerL, 0, effectMixerL, 0);
-AudioConnection          patchCord116(volumeMixerR, 0, effectMixerR, 0);
+AudioConnection          patchCord441(dcOffsetFilter, 2, volumeMixer, 0);
+AudioConnection          patchCord112(volumeMixer, 0, SharedAudio[0].ensemble, 0);
+AudioConnection          patchCord415(dcOffsetFilter, 2, scope, 0);
+AudioConnection          patchCord416(dcOffsetFilter, 2, peak, 0);
+AudioConnection          patchCord113(SharedAudio[0].ensemble, 0, effectMixerL, 1);
+AudioConnection          patchCord114(SharedAudio[0].ensemble, 1, effectMixerR, 1);
+AudioConnection          patchCord115(volumeMixer, 0, effectMixerL, 0);
+AudioConnection          patchCord116(volumeMixer, 0, effectMixerR, 0);
 AudioConnection          patchCord117(effectMixerR, 0, usbAudio, 1);
 AudioConnection          patchCord118(effectMixerR, 0, i2s, 1);
 AudioConnection          patchCord119(effectMixerL, 0, i2s, 0);
 AudioConnection          patchCord120(effectMixerL, 0, usbAudio, 0);
+*/
+
+AudioConnection          patchFinalMixing001(SharedAudio[0].voiceMixerM, 0, voiceMixer1, 0);
+AudioConnection          patchFinalMixing002(SharedAudio[1].voiceMixerM, 0, voiceMixer1, 1);
+AudioConnection          patchFinalMixing003(SharedAudio[2].voiceMixerM, 0, voiceMixer1, 2);
+AudioConnection          patchFinalMixing004(SharedAudio[3].voiceMixerM, 0, voiceMixer1, 3);
+AudioConnection          patchFinalMixing005(SharedAudio[4].voiceMixerM, 0, voiceMixer2, 0);
+AudioConnection          patchFinalMixing006(SharedAudio[5].voiceMixerM, 0, voiceMixer2, 1);
+AudioConnection          patchFinalMixing007(SharedAudio[6].voiceMixerM, 0, voiceMixer2, 2);
+AudioConnection          patchFinalMixing008(SharedAudio[7].voiceMixerM, 0, voiceMixer2, 3);
+AudioConnection          patchFinalMixing009(SharedAudio[8].voiceMixerM, 0, voiceMixer3, 0);
+AudioConnection          patchFinalMixing010(SharedAudio[9].voiceMixerM, 0, voiceMixer3, 1);
+AudioConnection          patchFinalMixing011(SharedAudio[10].voiceMixerM, 0, voiceMixer3, 2);
+AudioConnection          patchFinalMixing012(SharedAudio[11].voiceMixerM, 0, voiceMixer3, 3);
+
+AudioConnection          patchCord197(voiceMixer1, 0, voiceMixerM, 0);
+AudioConnection          patchCord198(voiceMixer2, 0, voiceMixerM, 1);
+AudioConnection          patchCord215(voiceMixer3, 0, voiceMixerM, 2);
+AudioConnection          patchCord203(voiceMixerM, 0, dcOffsetFilter, 0);
+AudioConnection          patchCord441(dcOffsetFilter, 2, volumeMixer, 0);
+AudioConnection          patchCord112(volumeMixer, 0, SharedAudio[0].ensemble, 0);
+AudioConnection          patchCord415(dcOffsetFilter, 2, scope, 0);
+AudioConnection          patchCord416(dcOffsetFilter, 2, peak, 0);
+AudioConnection          patchCord113(SharedAudio[0].ensemble, 0, effectMixerL, 1);
+AudioConnection          patchCord114(SharedAudio[0].ensemble, 1, effectMixerR, 1);
+AudioConnection          patchCord115(volumeMixer, 0, effectMixerL, 0);
+AudioConnection          patchCord116(volumeMixer, 0, effectMixerR, 0);
+AudioConnection          patchCord117(effectMixerR, 0, usbAudio, 1);
+AudioConnection          patchCord118(effectMixerR, 0, i2s, 1);
+AudioConnection          patchCord119(effectMixerL, 0, i2s, 0);
+AudioConnection          patchCord120(effectMixerL, 0, usbAudio, 0);
+
 AudioControlSGTL5000     sgtl5000_1;     //xy=2353,505
 // GUItool: end automatically generated code
 

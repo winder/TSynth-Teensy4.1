@@ -200,41 +200,27 @@ FLASHMEM void setup() {
 
   constant1Dc.amplitude(ONE);
 
-  voiceMixerML.gain(0, 0.25f);
-  voiceMixerML.gain(1, 0.25f);
-  voiceMixerML.gain(2, 0.25f);
-  voiceMixerML.gain(3, 0.25f);
-  voiceMixerMR.gain(0, 0.25f);
-  voiceMixerMR.gain(1, 0.25f);
-  voiceMixerMR.gain(2, 0.25f);
-  voiceMixerMR.gain(3, 0.25f);
+  voiceMixerM.gain(0, 0.25f);
+  voiceMixerM.gain(1, 0.25f);
+  voiceMixerM.gain(2, 0.25f);
+  voiceMixerM.gain(3, 0.25f);
 
   pink.amplitude(ONE);
   white.amplitude(ONE);
 
-  voiceMixerML.gain(0, VOICEMIXERLEVEL);
-  voiceMixerML.gain(1, VOICEMIXERLEVEL);
-  voiceMixerML.gain(2, VOICEMIXERLEVEL);
-  voiceMixerML.gain(3, VOICEMIXERLEVEL);
-  voiceMixerMR.gain(0, VOICEMIXERLEVEL);
-  voiceMixerMR.gain(1, VOICEMIXERLEVEL);
-  voiceMixerMR.gain(2, VOICEMIXERLEVEL);
-  voiceMixerMR.gain(3, VOICEMIXERLEVEL);
+  voiceMixerM.gain(0, VOICEMIXERLEVEL);
+  voiceMixerM.gain(1, VOICEMIXERLEVEL);
+  voiceMixerM.gain(2, VOICEMIXERLEVEL);
+  voiceMixerM.gain(3, VOICEMIXERLEVEL);
 
   //This removes dc offset (mostly from unison pulse waves) before the ensemble effect
-  dcOffsetFilterL.octaveControl(1.0f);
-  dcOffsetFilterL.frequency(12.0f);//Lower values will give clicks on note on/off
-  dcOffsetFilterR.octaveControl(1.0f);
-  dcOffsetFilterR.frequency(12.0f);//Lower values will give clicks on note on/off
+  dcOffsetFilter.octaveControl(1.0f);
+  dcOffsetFilter.frequency(12.0f);//Lower values will give clicks on note on/off
 
-  volumeMixerL.gain(0, 1.0f);
-  volumeMixerL.gain(1, 0);
-  volumeMixerL.gain(2, 0);
-  volumeMixerL.gain(3, 0);
-  volumeMixerR.gain(0, 1.0f);
-  volumeMixerR.gain(1, 0);
-  volumeMixerR.gain(2, 0);
-  volumeMixerR.gain(3, 0);
+  volumeMixer.gain(0, 1.0f);
+  volumeMixer.gain(1, 0);
+  volumeMixer.gain(2, 0);
+  volumeMixer.gain(3, 0);
 
   volumePrevious = RE_READ; //Force volume control to be read and set to current
 
