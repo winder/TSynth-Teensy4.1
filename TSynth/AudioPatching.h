@@ -91,18 +91,6 @@ AudioFilterStateVariable dcOffsetFilterL; //xy=2591,1804
 AudioFilterStateVariable dcOffsetFilterR; //xy=2591,1804
 AudioMixer4              volumeMixerL;    //xy=2774,1756
 AudioMixer4              volumeMixerR;    //xy=2774,1756
-AudioEffectEnsemble      ensemble1;
-AudioEffectEnsemble      ensemble2;
-AudioEffectEnsemble      ensemble3;
-AudioEffectEnsemble      ensemble4;
-AudioEffectEnsemble      ensemble5;
-AudioEffectEnsemble      ensemble6;
-AudioEffectEnsemble      ensemble7;
-AudioEffectEnsemble      ensemble8;
-AudioEffectEnsemble      ensemble9;
-AudioEffectEnsemble      ensemble10;
-AudioEffectEnsemble      ensemble11;
-AudioEffectEnsemble      ensemble12;
 Oscilloscope             scope;
 AudioMixer4              effectMixerR;   //xy=2984,1823
 AudioMixer4              effectMixerL;   //xy=2985,1728
@@ -785,8 +773,8 @@ AudioConnection          patchCord1034(voiceMixer2_12, 1, voiceMixerM_12, 2);
 AudioConnection          patchCord1035(voiceMixer3_12, 1, voiceMixerM_12, 3);
 */
 
-AudioConnection          patchCord2001(SharedAudio[0].voiceMixerM, 0, ensemble1, 0);
-AudioConnection          patchCord2002(SharedAudio[1].voiceMixerM, 0, ensemble2, 0);
+AudioConnection          patchCord2001(SharedAudio[0].voiceMixerM, 0, SharedAudio[0].ensemble, 0);
+AudioConnection          patchCord2002(SharedAudio[1].voiceMixerM, 0, SharedAudio[1].ensemble, 0);
 /*
 AudioConnection          patchCord2003(voiceMixerM_3, 0, ensemble3, 0);
 AudioConnection          patchCord2004(voiceMixerM_4, 0, ensemble4, 0);
@@ -800,10 +788,10 @@ AudioConnection          patchCord2011(voiceMixerM_11, 0, ensemble11, 0);
 AudioConnection          patchCord2012(voiceMixerM_12, 0, ensemble12, 0);
 */
 
-AudioConnection          patchCord111(ensemble1, 0, voiceMixer1L, 0);
-AudioConnection          patchCord3111(ensemble1, 0, voiceMixer1R, 0);
-AudioConnection          patchCord108(ensemble2, 0, voiceMixer1L, 1);
-AudioConnection          patchCord3108(ensemble2, 0, voiceMixer1R, 1);
+AudioConnection          patchCord111(SharedAudio[0].ensemble, 0, voiceMixer1L, 0);
+AudioConnection          patchCord3111(SharedAudio[0].ensemble, 0, voiceMixer1R, 0);
+AudioConnection          patchCord108(SharedAudio[1].ensemble, 0, voiceMixer1L, 1);
+AudioConnection          patchCord3108(SharedAudio[1].ensemble, 0, voiceMixer1R, 1);
 /*
 AudioConnection          patchCord109(ensemble3, 0, voiceMixer1L, 2);
 AudioConnection          patchCord3109(ensemble3, 0, voiceMixer1R, 2);
