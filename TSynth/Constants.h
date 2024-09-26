@@ -1,7 +1,31 @@
 #pragma once
 
+#include <Arduino.h>
 #include <stdint.h>
-#include "Arduino.h"
+
+#define MONOPHONIC_OFF 0
+#define MONOPHONIC_LAST 1
+#define MONOPHONIC_FIRST 2
+#define MONOPHONIC_HIGHEST 3
+#define MONOPHONIC_LOWEST 4
+// Legato isn't supported, the envelope state from the previous note needs to transfer to the new note
+#define MONOPHONIC_LEGATO 5
+
+#define WAVEFORM_PARABOLIC 103
+#define WAVEFORM_HARMONIC 104
+
+// Display page constants
+#define PARAMETER 0     //The main page for displaying the current patch and control (parameter) changes
+#define RECALL 1        //Patches list
+#define SAVE 2          //Save patch page
+#define REINITIALISE 3  // Reinitialise message
+#define PATCH 4         // Show current patch bypassing PARAMETER
+#define PATCHNAMING 5   // Patch naming page
+#define DELETE 6        //Delete patch page
+#define DELETEMSG 7     //Delete patch message page
+#define SETTINGS 8      //Settings page
+#define SETTINGSVALUE 9 //Settings page
+
 
 #define RE_READ -99
 #define PWMWAVEFORM WAVEFORM_SINE
